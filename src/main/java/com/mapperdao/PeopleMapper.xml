@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.PeopleMapper" >
+<resultMap type="com.bean.People" id="selectPeopleAllMap">
+	<id column="peopleid" property="id"/>
+	<result column="name" property="name"/>
+	<result column="address" property="address"/>
+	<result column="sex" property="sex"/>
+	<result column="hobby" property="hobby"/>
+	<result column="imgpath" property="imgpath"/>
+<association property="addressObj" javaType="com.bean.Address">
+<id column="addressid" property="id"/>
+<result column="city" property="city"/>
+<result column="myorderid" property="myorderid"/>
+</association>	
+</resultMap>
+
+  <select id="selectPeopleAll" resultMap="selectPeopleAllMap">
+  select a.id peopleid,a.name,a.address,a.sex,a.hobby,a.imgpath,b.id addressid,b.city,b.myorderid 
+  FROM people a INNER JOIN address b on a.address=b.id
+  </select>
+</mapper>

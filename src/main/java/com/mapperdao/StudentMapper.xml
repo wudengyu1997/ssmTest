@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.StudentMapper" >
+  
+  
+  <select id="selectAllStu" resultType="com.bean.Student" parameterType="com.bean.Student">
+  SELECT * from student<if test="sname!=null and sname!='%null%'" >
+  where sname like #{sname}
+  </if>
+  </select>
+</mapper>
